@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech Blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-head p-3 bg-light">
+							<h3 class="text-center heading fw-bold fs-2">Comments</h3>
+						</div>
+						<div class="card-body table-responsive">
+							<!-- ALERT MESSAGE STARTS -->
+							<div class="alert alert-success" th:if="${session.successMsg}">
+								<p class="text-center fs-6 fw-bold">[[${session.successMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-danger" th:if="${session.failMsg}">
+								<p class="text-center fs-6 fw-bold">[[${session.failMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-warning" th:if="${session.warningMsg}">
+								<p class="text-center fs-6 fw-bold">[[${session.warningMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<!-- ALERT MESSAGE ENDS -->
+							<table class="table table-bordered text-center">
+								<tr class="table-dark">
+									<th>Title</th>
+									<th>User</th>
+									<th>Image</th>
+									<th>Comment</th>
+									<th>Mobile Number</th>
+									<th>Date</th>
+									<th>Action</th>
+								</tr>
+								<th:block th:if="${comments.size()==0}">
+									<td colspan="8" class="text-center text-warning p-2 fw-bold fs-f5">No Comments</td>
+								</th:block>
+								<th:block th:if="${comments.size()!=0}">
+										<tr th:each="comment : ${comments}">
+											<td th:text="${comment.blog.title}"></td>
+											<td th:text="${comment.user.fullName}"></td>
+											<td><img th:src="@{'/images/users/'+${comment.user.profileImageUrl}}" class="profile img-thumbnail" alt="" /></td>
+											<td th:text="${comment.comment}"></td>
+											<td th:text="${comment.user.mobileNumber}"></td>
+											<td th:text="${#dates.format(comment.date, 'dd/MM/yyyy')}"></td>
+											<td>
+												<a th:onclick="'deleteComment('+${comment.id}+')'" class="btn btn-danger btn-sm"> <i class="fa-solid fa-trash"></i> Delete</a>
+											</td>
+										</tr>
+									</table>
+									<div class="d-flex justify-content-center" th:if="${comments.size()!=0}">
+										<nav aria-label="Page navigation example">
+										  <ul class="pagination">
+										    <li class="page-item" th:if="${currentPage!=0}">
+										      <a class="page-link" th:href="@{'/admin/comments?pageNo='+${currentPage-1}}" aria-label="Previous">
+										        <span aria-hidden="true">&laquo;</span>
+										      </a>
+										    </li>
+										    <li class="page-item" th:each="page : ${#numbers.sequence(1, totalPages)}" th:classappend="${page==currentPage+1 ? 'active' : '' }">
+										    	<a class="page-link" th:href="@{'/admin/comments?pageNo='+${page-1}}" th:text="${page}"></a>
+										    </li>
+										    <li class="page-item" th:if="${currentPage+1!=totalPages}">
+										      <a class="page-link" th:href="@{'/admin/comments?pageNo='+${currentPage+1}}" aria-label="Next">
+										        <span aria-hidden="true">&raquo;</span>
+										    </a>
+										   </li>
+										 </ul>
+									</nav>
+								</div>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		function deleteComment(id) {
+	        swal({
+	            title: "Are you sure?",
+	            text: "You want to delete this comment!",
+	            icon: "warning",
+	            buttons: true,
+	            dangerMode: true,
+	        })
+	        .then((willDelete) => {
+	            if (willDelete) {
+	                window.location = "/admin/deleteComment/" + id;  
+	            } else {
+	                swal("This comment is safe!");
+	            }
+	        });
+	    }
+		</script>
+	</section>
+</body>
+</html>

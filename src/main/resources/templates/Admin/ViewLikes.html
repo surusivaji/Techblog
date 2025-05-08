@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-head p-3 bg-light">
+							<h3 class="text-center fw-bold heading">Likes</h3>
+						</div>
+						<div class="card-body table-responsive">
+							<!-- ALERT MESSAGE STARTS -->
+							<div class="alert alert-success" th:if="${session.successMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.successMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-warning" th:if="${session.warningMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.warningMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-danger" th:if="${session.failMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.failMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<!-- ALERT MESSAGE ENDS -->
+							<table class="table">
+								<tr class="table-dark">
+									<th>Title</th>
+									<th>User</th>
+									<th>Image</th>
+									<th>Date</th>
+									<th>Mobile Number</th>
+									<th>Action</th>
+								</tr>
+								<th:block th:if="${likes.size()==0}">
+									<td colspan="6" class="text-center text-warning p-2 fw-bold fs-f5">No Likes</td>
+								</th:block>
+								<tr th:each="like : ${likes}">
+									<td th:text="${like.blog.title}"></td>
+									<td th:text="${like.user.fullName}"></td>
+									<td> <img th:src="@{'/images/users/'+${like.user.profileImageUrl}}" alt="" class="profile img-fluid img-thumbnail"/> </td>
+									<td th:text="${#dates.format(like.date, 'dd/MM/yyyy')}"></td>
+									<td th:text="${like.user.mobileNumber}"></td>
+									<td>
+										<a th:onclick="'deleteLike('+${like.id}+')'" class="btn btn-danger btn-sm"> <i class="fa-solid fa-trash"></i> Remove</a>
+									</td>
+								</tr>
+							</table>
+							<div class="d-flex justify-content-center" th:if="${likes.size()!=0}">
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination">
+								    <li class="page-item" th:if="${currentPage!=0}">
+								      <a class="page-link" th:href="@{'/admin/likes?pageNo='+${currentPage-1}}" aria-label="Previous">
+								        <span aria-hidden="true">&laquo;</span>
+								      </a>
+								    </li>
+								    <li class="page-item" th:each="page : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage+1==page ? 'active' : ''}">
+								    	<a class="page-link" th:href="@{'/admin/likes?pageNo='+${page-1}}" th:text="${page}">1</a>
+								    </li>
+								    <li class="page-item" th:if="${currentPage+1!=totalPages}">
+								      <a class="page-link" th:href="@{'/admin/likes?pageNo='+${currentPage+1}}" aria-label="Next">
+								        <span aria-hidden="true">&raquo;</span>
+								      </a>
+								    </li>
+								  </ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		function deleteLike(id) {
+	        swal({
+	            title: "Are you sure?",
+	            text: "You want to delete this like!",
+	            icon: "warning",
+	            buttons: true,
+	            dangerMode: true,
+	        })
+	        .then((willDelete) => {
+	            if (willDelete) {
+	                window.location = "/admin/deleteLike/" + id;  
+	            } else {
+	                swal("This like is safe!");
+	            }
+	        });
+	    }
+		</script>
+	</section>
+</body>
+</html>

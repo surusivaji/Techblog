@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 offset-md-1">
+					<div class="card">
+						<div class="card-head bg-light text-center p-3">
+							<h3 class="fw-bold heading text-danger">Edit Blog</h3>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/admin/updateBlogInformation}" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="id" id="id" th:value="${blog.id}" class="form-control" autocomplete="off" required/>
+								<div class="form-group mb-2">
+									<label for="title">Blog Title</label>
+									<input type="text" name="title" id="title" th:value="${blog.title}" class="form-control" autocomplete="off" required/>
+								</div>
+								<div class="form-group mb-2">
+									<label for="category">Category</label>
+									<select name="category" id="category" class="form-control" required>
+										<option th:value="${category.name}" th:each="category : ${categories}" th:selected="${category.name==blog.category}" th:text="${category.name}"></option>
+									</select>
+								</div>
+								<div class="form-group mb-2">
+									<label for="content">Description</label>
+									<textarea name="content" id="content" class="form-control" th:text="${blog.content}" cols="30" rows="7"></textarea>
+								</div>
+								<div class="form-group mb-2">
+									<label for="sampleCode">Sameple Code</label>
+									<textarea name="sampleCode" id="sampleCode" cols="" th:text="${blog.sampleCode}" rows="7" class="form-control"></textarea>
+								</div>
+								<div class="form-group mb-2">
+									<label for="uploadImage">Upload Image</label>
+									<input type="file" name="image" id="uploadImage" class="form-control"/>
+									<p class="mt-2">
+										<img th:src="@{'/images/blog_posts/'+${blog.blogImage}}" class="img-fluid" height="200px" width="190px" alt="" />
+									</p>
+								</div>
+								<div class="form-group mt-3">
+									<input type="submit" value="Save" class="btn btn-fav form-control"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+    	<script>
+		  ClassicEditor
+		          .create( document.querySelector( '#content' ) )
+		          .then( editor => {
+		            console.log( editor );
+		          } )
+		          .catch( error => {
+		            console.error( error );
+		          } );
+			  ClassicEditor
+	          .create( document.querySelector( '#sampleCode' ) )
+	          .then( editor => {
+	            console.log( editor );
+	          } )
+	          .catch( error => {
+	            console.error( error );
+	          } );
+		</script>
+	</section>
+</body>
+</html>

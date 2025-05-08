@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="card p-3">
+				<div class="row mb-2">
+					<div class="col-md-12">
+						<h2 class="text-center text-danger fw-bolder heading fs-2">Show Posts</h2>
+					</div>
+				</div>
+				<div class="row"> 
+					<th:block th:if="${blogs.size==0}">
+						<h3 class="text-warning fw-bold text-center">Posts are not avaliable 🤯🤯🤯</h3>
+					</th:block>
+					<th:block th:unless="${blogs.size==0}">
+						<div class="col-md-3 mb-3" th:each="blog : ${blogs}">
+							<div class="card shadow p-3 mb-3 bg-body rounded">
+								<div class="card-body text-center">
+									<img th:src="@{'/images/blog_posts/'+${blog.blogImage}}" alt="" width="100%" height="150px" />
+									<p class="fs-5 text-center" th:text="${blog.title}"></p>
+									<p class="text-center">
+										<a class="btn btn-primary"> <i class="far fa-thumbs-up"></i> <span th:text="${blog.likes.size()}"></span></a>
+										<a class="btn btn-outline-success" th:href="@{'/user/post/'+${blog.id}}"> <i class="fa-solid fa-eye"></i> View</a>
+										<a class="btn btn-danger"> <i class="fa-regular fa-comment"></i> <span th:text="${blog.comments.size()}"></span></a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</th:block>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="mt-5">
+		<div class="container">
+			<div class="row d-flex justify-content-center align-items-center" style="height:93vh">
+				<div class="col-md-5">
+					<div class="card">
+						<div class="card-head card-light p-2 text-center">
+							<img th:src="@{/images/registerlogo.png}" height="70px" width="65px" class="img-fluid" alt="" />
+							<h3 class="fw-bold">Register Here !!</h3>
+						</div>
+						<div class="card-body">
+							<!-- alert message starts -->
+							<div class="alert alert-success" th:if="${session.successMsg}">
+								<p class="text-center fw-bold" th:text="${session.successMsg}"></p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-danger" th:if="${session.failMsg}">
+								<p class="text-center fw-bold" th:text="${session.failMsg}"></p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-warning" th:if="${session.warningMsg}">
+								<p class="text-center fw-bold" th:text="${session.warningMsg}"></p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<!-- alert message ends -->
+							<form th:action="@{/saveUserInformation}" method="post" enctype="multipart/form-data">
+								<div class="form-group mb-3">
+									<label for="fullName">Enter Fullname</label>
+									<input type="text" class="form-control" id="fullName" name="fullName" autocomplete="off" required/>
+								</div>
+								<div class="form-group mb-3">
+									<label for="email">Enter Email</label>
+									<input type="email" class="form-control" id="email" name="email" autocomplete="off" required />
+								</div>
+								<div class="form-group mb-3">
+									<label for="mobileNumber">Enter Mobile Number</label>
+									<input type="number" class="form-control" id="mobileNumber" name="mobileNumber" autocomplete="off" required/>
+								</div>
+								<div class="form-group mb-3">
+									<label for="password">Enter Password</label>
+									<input type="password" class="form-control" id="password" name="password" autocomplete="off" required />
+								</div>
+								<div class="form-group mb-3">
+									<label for="image">Upload Profile</label>
+									<input type="file" class="form-control" id="image" name="image"/>
+								</div>
+								<div class="form-group mt-4 mb-3 text-center">
+									<input type="submit" value="Submit" class="btn btn-fav"/>
+									<input type="reset" value="Reset" class="btn btn-warning"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

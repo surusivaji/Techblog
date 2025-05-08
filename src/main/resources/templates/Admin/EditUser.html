@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-5">
+					<div class="card">
+						<div class="card-head bg-light p-2 text-center">
+							<h3 class="fw-bold heading">Edit User</h3>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/admin/updateUserInformation}" method="post" enctype="multipart/form-data">
+								<input type="hidden" class="form-control" id="id" th:value="${user.id}" name="id" autocomplete="off" required/>
+								<div class="form-group mb-3">
+									<label for="fullName">Enter Fullname</label>
+									<input type="text" class="form-control" id="fullName" th:value="${user.fullName}" name="fullName" autocomplete="off" required/>
+								</div>
+								<div class="form-group mb-3">
+									<label for="email">Enter Email</label>
+									<input type="email" class="form-control" id="email" th:value="${user.email}" name="email" autocomplete="off" required />
+								</div>
+								<div class="form-group mb-3">
+									<label for="mobileNumber">Enter Mobile Number</label>
+									<input type="number" class="form-control" id="mobileNumber" th:value="${user.mobileNumber}" name="mobileNumber" autocomplete="off" required/>
+								</div>
+								<div class="form-group mb-3">
+									<label for="password">Enter Password</label>
+									<input type="password" class="form-control" id="password" th:value="${user.password}" name="password" autocomplete="off" required />
+								</div>
+								<div class="form-group mb-3">
+									<label for="image">Upload Profile</label>
+									<input type="file" class="form-control" id="image" name="image"/>
+									<p class="mt-2">
+										<img th:src="@{'/images/users/'+${user.profileImageUrl}}" alt="" class="img-thumbnail img-fluid profile"/>
+									</p>
+								</div>
+								<div class="form-group my-2 text-center">
+									<input type="submit" value="Save" class="btn btn-fav form-control"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

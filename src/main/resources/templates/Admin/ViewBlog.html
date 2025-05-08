@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-head p-3 bg-light">
+							<h2 class="text-center fw-bold heading" th:text="${blog.title}"></h2>
+						</div>
+						<div class="card-body">
+							<div class="d-flex justify-content-end">
+								<p class="me-3">Category : <span class="fw-bold text-primary" th:text="${blog.category}"></span></p>
+								<p>Created at: <span class="text-primary fw-bold" th:text="${#dates.format(blog.createdAt, 'dd/MM/yyyy')}"></span></p>
+							</div>
+							<div th:utext="${blog.content}"></div>
+							<th:block th:if="${blog.sampleCode!='no' && blog.sampleCode!=''}">
+								<p class="fs-5 text-danger">Sample code</p>
+								<div class="border p-2">							
+									<div th:utext="${blog.sampleCode}"></div>
+								</div>
+							</th:block>
+							<div class="my-2">
+								<button class="btn btn-primary"> <i class="far fa-thumbs-up"></i> <span th:text="${blog.likes.size()}"></span></button>
+								<button class="btn btn-success"> <i class="fa-regular fa-comment"></i> <span th:text="${blog.comments.size()}"></span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid mt-2">
+			<div class="row">
+				<div class="col-md-6" th:each="comm: ${comments}">
+					<div class="card mb-2">
+						<div class="card-body p-3">
+							<img th:src="@{'/images/users/'+${comm.user.profileImageUrl}}" class="img-thumbnail img-fluid profile" alt="profile photo" /> 
+							<span th:text="${comm.user.fullName}"></span> <br />
+							<p th:text="${comm.comment}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tech Blog</title>
+     <link rel="icon" th:href="@{/images/logo1.jpeg}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    
+    
+    <!-- navbar starts -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-fav navbar-dark">
+	  <div class="container-fluid">
+	    <a class="navbar-brand fw-bold" th:href="@{/user/home}"> <i class="fa-solid fa-star"></i> Techblog</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/user/home}"> <i class="fa-solid fa-home"></i> Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" th:href="@{/user/posts}">Posts</a>
+	        </li>
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	            Categories
+	          </a>
+	          <ul class="dropdown-menu">
+	            <li th:each="category : ${categories}">
+	            	<a class="dropdown-item" th:href="@{'/user/blogs?category='+${category.name}}" th:text="${category.name}"></a>
+	            </li>
+	          </ul>
+	        </li>
+	      </ul>
+	      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+	        <li class="nav-item me-2">
+	          <a class="nav-link active btn btn-info" aria-current="page" data-bs-toggle="modal" data-bs-target="#viewProfile"> <i class="fa-solid fa-circle-user"></i> <span th:text="${user.fullName}"></span></a>
+	        </li>
+	         <li class="nav-item">
+	          <a class="nav-link active btn btn-warning" aria-current="page" th:href="@{/user/logout}"> <i class="fa-solid fa-right-to-bracket"></i> Logout</a>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	<!-- navbar ends -->
+	
+	<!-- profile page modal starts -->
+	<div class="modal fade" id="viewProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header bg-fav text-light">
+	        <h5 class="modal-title fs-4" id="exampleModalLabel">Profile</h5>
+	        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="d-flex align-items-center flex-column">
+	        	<h4 th:text="${user.fullName}" class="fw-bold"></h4>
+	        	<img th:src="@{'/images/users/'+${user.profileImageUrl}}" alt="profileImage" class="profileImage img-fluid img-thumbnail" />
+	        </div>
+	        <div class="table-responsive">
+	        	<table class="table table-borderless">
+	        		<tr>
+	        			<th>#ID</th>
+	        			<th>:</th>
+	        			<th>TBUSER00<span th:text="${user.id}"></span></th>
+	        		</tr>
+	        		<tr>
+	        			<th>Email</th>
+	        			<th>:</th>
+	        			<td th:text="${user.email}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>Mobile Number</th>
+	        			<th>:</th>
+	        			<td th:text="${user.mobileNumber}"></td>
+	        		</tr>
+	        		<tr>
+	        			<th>Role</th>
+	        			<th>:</th>
+	        			<td th:text="${user.role}"></td>
+	        		</tr>
+	        	</table>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	        <a th:href="@{/user/editProfile}" class="btn btn-primary">Edit</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- profile page ends -->
+
+	<div th:replace="${content}">
+	</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script th:src="@{/javascript/script.js}"></script>
+    
+  </body>
+</html>

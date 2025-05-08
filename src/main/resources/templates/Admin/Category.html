@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-head text-center bg-light p-3">
+							<h3 class="fw-bold heading">Add Category</h3>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/admin/saveCategory}" method="post">
+								<div class="form-group mb-3">
+									<label for="categoryName">Enter Category</label>
+									<input type="text" name="name" class="form-control" autocomplete="off" id="categoryName" required/>
+								</div>
+								<div class="form-group mb-3">
+									<label for="status">Status</label>	
+									<div class="form-check">
+									  <input class="form-check-input" type="radio" th:value="${true}" name="status" id="flexRadioDefault1">
+									  <label class="form-check-label" for="flexRadioDefault1">
+									    Active
+									  </label>
+									</div>
+									<div class="form-check">
+									  <input class="form-check-input" type="radio" th:value="${false}" name="status" id="flexRadioDefault2">
+									  <label class="form-check-label" for="flexRadioDefault2">
+									    inActive
+									  </label>
+									</div>
+								</div>
+								<input type="submit" value="Add" class="form-control btn btn-fav"/>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="card">
+						<div class="card-head bg-light p-3 text-center">
+							<h3 class="fw-bold heading">Categories</h3>
+						</div>
+						<div class="card-body table-responsive">
+							<!-- alert message starts -->
+							<div class="alert alert-success" th:if="${session.successMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.successMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-warning" th:if="${session.warningMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.warningMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-danger" th:if="${session.failMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.failMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<!-- alert message ends -->
+							<table class="table">
+								<tr class="table-dark">
+									<th>#ID</th>
+									<th>Category</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
+								<tr th:each="category : ${categories}">
+									<td th:text="${category.id}"></td>
+									<td th:text="${category.name}">Java</td>
+									<td th:text="${category.status}">true</td>
+									<td>
+										<a th:href="@{'/admin/editCategory/'+${category.id}}" class="btn btn-success edit-btn btn-sm"> <i class="fa-solid fa-pen-nib"></i> Edit</a>
+										<a th:onclick="'deleteCategory('+${category.id}+')'" class="btn btn-danger delete-btn btn-sm"> <i class="fa-solid fa-trash"></i> Remove</a>
+									</td>
+								</tr>
+							</table>
+							<div class="d-flex justify-content-center">
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination">
+								    <li class="page-item" th:if=${currentPage!=0}>
+								      <a class="page-link" th:href="@{'/admin/categories?pageNo='+${currentPage-1}}" aria-label="Previous">
+								        <span aria-hidden="true">&laquo;</span>
+								        <span class="sr-only">Previous</span>
+								      </a>
+								    </li>
+								    <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage+1==i ? 'active' : ''}">
+								    	<a class="page-link" th:href="@{'/admin/categories?pageNo='+${i-1}}">[[${i}]]</a>
+								    </li>
+								    <li class="page-item" th:if="${currentPage+1!=totalPages}">
+								      <a class="page-link" th:href="@{'/admin/categories?pageNo='+${currentPage+1}}" aria-label="Next">
+								        <span aria-hidden="true">&raquo;</span>
+								        <span class="sr-only">Next</span>
+								      </a>
+								    </li>
+								  </ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		function deleteCategory(id) {
+	        swal({
+	            title: "Are you sure?",
+	            text: "You want to delete this category!",
+	            icon: "warning",
+	            buttons: true,
+	            dangerMode: true,
+	        })
+	        .then((willDelete) => {
+	            if (willDelete) {
+	                window.location = "/admin/deleteCategory/" + id;  
+	            } else {
+	                swal("This category is safe!");
+	            }
+	        });
+	    }
+		</script>
+	</section>
+</body>
+</html>

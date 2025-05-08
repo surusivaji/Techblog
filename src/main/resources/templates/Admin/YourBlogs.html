@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="card p-3">
+				<div class="row mb-2">
+					<div class="col-md-12">
+						<h2 class="text-center text-danger fw-bolder heading fs-2">Your Posts</h2>
+					</div>
+				</div>
+				<div class="row">
+					<!-- ALERT MESSAGE STARTS -->
+					<div class="alert alert-danger" th:if="${session.failMsg}">
+						<p class="text-center fw-bold fs-6">[[${session.failMsg}]]</p>
+						<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+					</div>
+					<!-- ALERT MESSAGE ENDS -->
+					<th:block th:if="${blogs.size()==0}">
+						<h3 class="text-warning fs-3 fw-bold text-center">This author does not post anything 😑😑😑</h3>
+					</th:block>
+					<th:block th:if="${blogs.size()!=0}">
+						<div class="col-md-3 mb-3" th:each="blog : ${blogs}">
+							<div class="card shadow p-3 mb-3 bg-body rounded">
+								<div class="card-body text-center">
+									<img th:src="@{'/images/blog_posts/'+${blog.blogImage}}" alt="" width="100%" height="150px" />
+									<p class="fs-5 text-center" th:text="${blog.title}"></p>
+									<p class="text-center">
+										<a th:href="@{'/admin/editBlog/'+${blog.id}}" class="btn edit-btn btn-sm"> <i class="fa-solid fa-pen-nib"></i> Edit</a>
+										<a th:href="@{'/admin/viewBlog/'+${blog.id}}" class="btn btn-primary btn-sm"> <i class="fa-solid fa-eye"></i> View</a>
+										<a th:onclick="'deleteBlog('+${blog.id}+')'" class="btn delete-btn btn-sm"> <i class="fa-solid fa-trash"></i> Remove</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- PAGINATION STARTS -->
+						<div>
+							<nav aria-label="Page navigation example">
+							  <ul class="pagination justify-content-center">
+							    <li class="page-item" th:if="${currentPage!=0}">
+							      <a class="page-link" th:href="@{'/admin/yourBlogs?pageNo='+${page-1}}" aria-label="Previous">
+							        <span aria-hidden="true">&laquo;</span>
+							      </a>
+							    </li>
+							    <li class="page-item" th:each="page : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage+1==page ? 'active' : ''}">
+							    	<a class="page-link" th:href="@{'/admin/yourBlogs?pageNo='+${page-1}}" th:text="${page}"></a>
+							    </li>
+							    <li class="page-item" th:if="${currentPage+1!=totalPages}">
+							      <a class="page-link" th:href="@{'/admin/yourBlogs?pageNo='+${page+1}}" aria-label="Next">
+							        <span aria-hidden="true">&raquo;</span>
+							      </a>
+							    </li>
+							  </ul>
+							</nav>
+						</div>
+						<!-- PAGINATION ENDS -->
+					</th:block>
+				</div>
+			</div>
+		</div>
+		<script>
+			function deleteBlog(id) {
+		        swal({
+		            title: "Are you sure?",
+		            text: "You want to delete this blog!",
+		            icon: "warning",
+		            buttons: true,
+		            dangerMode: true,
+		        })
+		        .then((willDelete) => {
+		            if (willDelete) {
+		                window.location = "/admin/deleteBlog/" + id;  
+		            } else {
+		                swal("This blog is safe!");
+		            }
+		        });
+		    }
+		</script>
+	</section>
+</body>
+</html>

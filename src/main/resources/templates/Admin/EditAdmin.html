@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-5">
+					<div class="card">
+						<div class="card-head bg-light p-3 text-center">
+							<h3 class="fw-bold heading">Edit Admin</h3>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/admin/updateAdminInformation}" method="post" enctype="multipart/form-data">
+								<input type="hidden" class="form-control" id="id" th:value="${adminInfo.id}" name="id" autocomplete="off" required/>
+								<div class="form-group mb-3">
+									<label for="fullName">Enter Fullname</label>
+									<input type="text" class="form-control" id="fullName" th:value="${adminInfo.fullName}" name="fullName" autocomplete="off" required/>
+								</div>
+								<div class="form-group mb-3">
+									<label for="email">Enter Email</label>
+									<input type="email" class="form-control" id="email" th:value="${adminInfo.email}" name="email" autocomplete="off" required />
+								</div>
+								<div class="form-group mb-3">
+									<label for="mobileNumber">Enter Mobile Number</label>
+									<input type="number" class="form-control" id="mobileNumber" th:value="${adminInfo.mobileNumber}" name="mobileNumber" autocomplete="off" required/>
+								</div>
+								<div class="form-group mb-3">
+									<label for="image">Upload Profile</label>
+									<input type="file" class="form-control" id="image" name="image"/>
+									<p class="mt-1">
+										<img th:src="@{'/images/users/'+${admin.profileImageUrl}}" alt="profile Image" class="img-thumbnail img-fluid profileImage"/>
+									</p>
+								</div>
+								<div class="form-group my-3 text-center">
+									<input type="submit" value="Save" class="btn btn-fav form-control"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

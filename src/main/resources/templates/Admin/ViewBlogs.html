@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech Blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-head p-3 text-center">
+							<h3 class="heading fw-bold">View Blogs</h3>
+						</div>
+						<div class="card-body table-responsive">
+							<!-- alert message starts -->
+							<div class="alert alert-success" th:if="${session.successMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.successMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-warning" th:if="${session.warningMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.warningMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-danger" th:if="${session.failMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.failMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<!-- alert message ends -->
+							<table class="table table-hover">
+								<tr class="table-dark">
+									<th>ID</th>
+									<th>Image</th>
+									<th>Title</th>
+									<th>Author</th>
+									<th>Category</th>
+									<th>Created At</th>
+									<th>Comments</th>
+									<th>Likes</th>
+									<th>Action</th>
+								</tr>
+								<tr th:each="blog : ${blogs}">
+									<td th:text="${blog.id}"></td>
+									<td><img th:src="@{'/images/blog_posts/'+${blog.blogImage}}" alt="" height="60px" width="60px"/></td>
+									<td th:text="${blog.title}"></td>
+									<td th:text="${blog.admin.fullName}"></td>
+									<td th:text="${blog.category}"></td>
+									<td th:text="${#dates.format(blog.createdAt, 'dd-MM-yyyy')}"></td>
+									<td th:text="${blog.comments.size()}"></td>
+									<td th:text="${blog.likes.size()}"></td>
+									<td>
+										<a th:href="@{'/admin/editBlog/'+${blog.id}}" class="btn btn-success edit-btn btn-sm"> <i class="fa-solid fa-pen-nib"></i> Edit</a>
+										<a th:onclick="'deleteBlog('+${blog.id}+')'" class="btn btn-danger delete-btn btn-sm"> <i class="fa-solid fa-trash"></i> Remove</a>
+									</td>
+								</tr>
+							</table>
+							<div class="d-flex justify-content-center" th:if="${blogs.size()!=0}">
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination">
+								    <li class="page-item" th:if="${currentPage!=0}">
+								      <a class="page-link" th:href="@{'/admin/blogs?pageNo='+${currentPage-1}}" aria-label="Previous">
+								        <span aria-hidden="true">&laquo;</span>
+								      </a>
+								    </li>
+								    <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage+1==i ? 'active' : ''}">
+								    	<a class="page-link" t th:href="@{'/admin/blogs?pageNo='+${i-1}}">[[${i}]]</a>
+								    </li>
+								    <li class="page-item" th:if="${totalPages!=currentPage+1}">
+								      <a class="page-link" th:href="@{'/admin/blogs?pageNo='+${currentPage+1}}" aria-label="Next">
+								        <span aria-hidden="true">&raquo;</span>
+								      </a>
+								    </li>
+								  </ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		function deleteBlog(id) {
+	        swal({
+	            title: "Are you sure?",
+	            text: "You want to delete this blog!",
+	            icon: "warning",
+	            buttons: true,
+	            dangerMode: true,
+	        })
+	        .then((willDelete) => {
+	            if (willDelete) {
+	                window.location = "/admin/deleteBlog/" + id;  
+	            } else {
+	                swal("This blog is safe!");
+	            }
+	        });
+	    }
+		</script>
+	</section>
+		</script>
+	</section>
+</body>
+</html>

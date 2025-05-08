@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech Blog</title>
+</head>
+<body>
+	<section class="margin-class">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-head p-3 bg-light">
+							<h3 class="text-center heading fw-bold">Change Password</h3>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/admin/changePassword}" method="post">
+								<!-- alert message starts -->
+								<div class="alert alert-success" th:if="${session.updateSuccess}">
+									<p class="text-center fw-bold fs-6">[[${session.updateSuccess}]]</p>
+									<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+								</div>
+								<div class="alert alert-danger" th:if="${session.updateFail}">
+									<p class="text-center fw-bold fs-6">[[${session.updateFail}]]</p>
+									<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+								</div>
+								<!-- alert message ends -->
+								<div class="form-group mb-3">
+									<label for="oldPassword">Enter old password</label>
+									<input type="password" id="oldPassword" name="oldPassword" class="form-control" autocomplete="off" required />
+								</div>
+								<div class="form-group mb-3">
+									<label for="newPassword">Enter new password</label>
+									<input type="password" id="newPassword" name="newPassword" class="form-control" autocomplete="off" required />
+								</div>
+								<div class="form-group my-4">
+									<input type="submit" value="Change Password" class="form-control btn btn-fav btn-primary" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="card">
+						<div class="card-head p-3 bg-light">
+							<h3 class="text-center heading fw-bold">Admins Information</h3>
+						</div>
+						<div class="card-body table-responsive">
+							<!-- alert message starts -->
+							<div class="alert  alert-success" th:if="${session.successMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.successMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-danger" th:if="${session.failMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.failMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<div class="alert alert-warning" th:if="${session.warningMsg}">
+								<p class="text-center fw-bold fs-6">[[${session.warningMsg}]]</p>
+								<th:block th:text="${@IUserServiceImpl.removeSessionMessage()}"></th:block>
+							</div>
+							<!-- alert message ends -->
+							<table class="table">
+								<tr class="table-dark">
+									<th>#ID</th>
+									<th>Image</th>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Mobile Number</th>
+									<th>Action</th>
+								</tr>
+								<tr th:each="admin: ${admins}">
+									<td th:text="${admin.id}"></td>
+									<td><img th:src="@{'/images/users/'+${admin.profileImageUrl}}" alt="profile" class="img-fluid img-thumbnail profile"/></td>
+									<td th:text="${admin.fullName}"></td>
+									<td th:text="${admin.email}"></td>
+									<td th:text="${admin.mobileNumber}"></td>
+									<td>
+										<a th:href="@{'/admin/editAdmin/'+${admin.id}}" class="btn btn-sm edit-btn"> <i class="fa-solid fa-pen-nib"></i> Edit</a>
+										<a th:onclick="'deleteAdmin('+${admin.id}+')'" class="btn btn-sm delete-btn"> <i class="fa-solid fa-trash"></i> Remove</a>
+									</td>
+								</tr>
+							</table>
+							<div class="d-flex justify-content-center">
+								<nav aria-label="Page navigation example">
+								  <ul class="pagination">
+								    <li class="page-item" th:if="${currentPage!=0}">
+								      <a class="page-link" th:href="@{'/admin/admins?pageNo='+${currentPage-1}}" aria-label="Previous">
+								        <span aria-hidden="true">&laquo;</span>
+								        <span class="sr-only">Previous</span>
+								      </a>
+								    </li>
+								    <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage==i-1 ? 'active' : ''}">
+								   		<a class="page-link" th:href="@{'/admin/admins?pageNo='+${i-1}}" th:text="${i}"></a>
+								    </li>
+								    <li class="page-item" th:if="${currentPage+1!=totalPages}">
+								      <a class="page-link" th:href="@{'/admin/admins?pageNo='+${currentPage+1}}" aria-label="Next">
+								        <span aria-hidden="true">&raquo;</span>
+								        <span class="sr-only">Next</span>
+								      </a>
+								    </li>
+								  </ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function deleteAdmin(id) {
+		        swal({
+		            title: "Are you sure?",
+		            text: "You want to delete this Admin!",
+		            icon: "warning",
+		            buttons: true,
+		            dangerMode: true,
+		        })
+		        .then((willDelete) => {
+		            if (willDelete) {
+		                window.location = "/admin/deleteAdmin/" + id;  
+		            } else {
+		                swal("Admin information is safe!");
+		            }
+		        });
+		    }
+		</script>
+	</section>
+</body>
+</html>

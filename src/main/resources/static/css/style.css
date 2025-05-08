@@ -1,0 +1,58 @@
+body {
+	background-color: #FAF7F0 !important;
+}
+
+.bg-fav {
+	background: #610C9F !important;
+}
+
+.btn-fav {
+	background: #610C9F !important;
+	color: #fff !important;
+	border: none;
+}
+
+.text-info {
+	color: #610C9F !important;
+}
+
+.margin-class {
+	margin-top: 70px;
+}
+
+.card {
+	box-shadow: 0 0 2px 2px #E5D9F2;
+}
+
+.heading {
+	color: #FF0000 !important;
+	text-shadow: 1px 1px #000;
+}
+
+.profileImage {
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;
+}
+
+.edit-btn {
+	background: #3EC70B !important;
+	color: #fff !important;
+	border: none;
+}
+
+.delete-btn {
+	background: #FF0000 !important;
+	color: #fff !important;
+	border: none;
+}
+
+.profile {
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+}
+
+.table-bordered {
+	border: 1px solid black !important;
+}

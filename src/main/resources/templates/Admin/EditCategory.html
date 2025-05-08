@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="Admin/Base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8">
+	<title>Tech Blog</title>
+</head>
+<body>
+	<section>
+		 <div class="container">
+		 	<div class="row d-flex justify-content-center align-items-center" style="height:95vh">
+		 		<div class="col-md-5">
+		 			<div class="card">
+		 				<div class="card-head p-3 bg-light">
+		 					<h3 class="text-center heading fw-bold">Edit Category</h3>
+		 				</div>
+		 				<div class="card-body">
+		 					<form th:action="@{/admin/updateCategoryInformation}" method="post">
+		 						<input type="hidden" th:value="${category.id}" name="id" class="form-control" autocomplete="off" required/>
+		 						<div class="form-group mb-3">
+		 							<label for="category">Category</label>
+		 							<input type="text" th:value="${category.name}" name="name" class="form-control" autocomplete="off" required/>
+		 						</div>
+		 						<div class="form-group mb-3">
+		 							<label for="status">Status</label>
+		 							<div class="form-check">
+									  <input class="form-check-input" type="radio" th:value="${true}" name="status" th:checked="${category.status==true}" id="flexRadioDefault1">
+									  <label class="form-check-label" for="flexRadioDefault1">
+									    Active
+									  </label>
+									</div>
+									<div class="form-check">
+									  <input class="form-check-input" type="radio" th:value="${false}" name="status" th:checked="${category.status==false}" id="flexRadioDefault2">
+									  <label class="form-check-label" for="flexRadioDefault2">
+									    inActive
+									  </label>
+									</div>
+		 						</div>
+		 						<div class="form-group my-3">
+		 							<input type="submit" value="save" class="btn btn-fav form-control"/>
+		 						</div>
+		 					</form>
+		 				</div>
+		 			</div>
+		 		</div>
+		 	</div>
+		 </div>
+	</section>
+</body>
+</html>
