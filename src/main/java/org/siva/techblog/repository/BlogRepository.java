@@ -13,9 +13,9 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 	
-	List<Blog> findByCategory(String category);
+	 List<Blog> findByCategory(String category);
 	
-	Page<Blog> findByAdmin(Admin admin, Pageable pageable);
+	 Page<Blog> findByAdmin(Admin admin, Pageable pageable);
 	
 	 @Query("SELECT c FROM Comment c WHERE c.blog.admin = :admin")
 	 Page<Comment> findCommentsByAdmin(Admin admin, Pageable pageable);
@@ -23,4 +23,6 @@ public interface BlogRepository extends JpaRepository<Blog, Integer> {
 	 @Query("SELECT l FROM Likes l WHERE l.blog.admin = :admin")
 	 Page<Likes> findLikesByAdmin(Admin admin, Pageable pageable);
 	 
+	 List<Blog> findByTitleContainingIgnoreCase(String ch1);
+	 	 
 }

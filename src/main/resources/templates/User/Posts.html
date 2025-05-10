@@ -5,8 +5,20 @@
 	<title>Tech blog</title>
 </head>
 <body>
-	<section class="margin-class">
-		<div class="container-fluid">
+	<section>
+		<div class="container-fluid mt-5 p-5 bg-fav">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<form th:action="@{/user/search}" method="get">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="search post here" name="ch"/>
+							<button class="btn btn-light text-dark ms-3"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid mt-3">
 			<div class="card p-3">
 				<div class="row mb-2">
 					<div class="col-md-12">

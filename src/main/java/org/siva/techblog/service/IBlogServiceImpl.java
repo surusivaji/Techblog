@@ -113,5 +113,15 @@ public class IBlogServiceImpl implements IBlogService {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<Blog> searchBlogsByTitle(String ch) {
+		try {
+			List<Blog> blogs = blogRepository.findByTitleContainingIgnoreCase(ch);
+			return blogs;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 }

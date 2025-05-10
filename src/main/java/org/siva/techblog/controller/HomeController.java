@@ -75,6 +75,13 @@ public class HomeController {
 		return "AdminLogin";
 	}
 	
+	@GetMapping("/search")
+	public String searchPage(@RequestParam("ch") String ch, Model model) {
+		List<Blog> blogs = blogService.searchBlogsByTitle(ch);
+		model.addAttribute("blogs", blogs);
+		return "Posts";
+	}
+	
 	@PostMapping("/saveUserInformation")
 	public String saveUserInformation(@ModelAttribute User user, @RequestParam("image") MultipartFile multipartFile, HttpSession session) {
 		try {	

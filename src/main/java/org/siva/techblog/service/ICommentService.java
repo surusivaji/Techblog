@@ -24,5 +24,5 @@ public interface ICommentService {
 	Comment getCommentById(int id);
 	
 	Boolean deleteComment(Comment comment);
-
+	
 }

@@ -239,6 +239,19 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping("/search")
+	public String searchTitle(HttpSession session, @RequestParam("ch") String ch, Model model) {
+		User user = (User) session.getAttribute("user");
+		if (user!=null) {
+			List<Blog> blogs = blogService.searchBlogsByTitle(ch);
+			model.addAttribute("blogs", blogs);
+			return "/User/Posts";
+		}
+		else {
+			return "redirect:/signin";
+		}
+	}
+	
 	@GetMapping("/logout") 
 	public String logoutPage(HttpSession session) {
 		User user = (User) session.getAttribute("user");

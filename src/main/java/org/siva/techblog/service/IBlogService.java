@@ -27,5 +27,7 @@ public interface IBlogService {
 	Page<Comment> getCommentsByAuthor(Admin admin, int pageNo);
 	
 	Page<Likes> getLikesByAuthor(Admin admin, int pageNo);
+	
+	List<Blog> searchBlogsByTitle(String ch);
 
 }
