@@ -21,9 +21,6 @@
 The **Tech Blog Application** is a comprehensive web-based blogging platform designed to empower both **Admins** and **Users** with distinct roles and capabilities. The primary purpose of this project is to provide a secure, scalable, and user-friendly environment where content can be created, managed, and consumed efficiently. Admins have the authority to oversee the entire system by managing blog categories, creating and editing blog posts, controlling user registrations, and moderating comments and likes to maintain quality and relevancy. Users, on the other hand, can register themselves, log in securely, explore a wide range of blogs, engage with content by liking and commenting, and manage their personal profiles.
 
 This project focuses on enhancing user experience by implementing session management to preserve user states and ensure secure access, along with pagination techniques to present content in manageable segments for smoother navigation. The front-end is built with responsive design principles using Bootstrap, ensuring accessibility across various devices and screen sizes. Architecturally, the application follows a clean layered approach separating concerns across model, repository, service, and controller layers, which promotes maintainability, extensibility, and ease of testing.
-
-Overall, this application aims to deliver a seamless blogging experience where admins can efficiently manage the platform’s content and users can actively participate in the blogging community, fostering interaction and knowledge sharing in a well-organized manner.
-
 ---
 
 ## ✨ Features
