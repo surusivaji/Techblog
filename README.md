@@ -165,3 +165,17 @@ mvn spring-boot:run
 #### 5️⃣ Access the Application
 - **User Panel:** `http://localhost:8080/`
 - **Admin Panel:** `http://localhost:8080/admin`
+
+---
+
+  ## 🖼️ Screenshots
+<p>Below are sample screenshots showcasing the Shopping Application:</p>
+<div>
+  <h4>1. Index Page</h4>
+  <img src="index.png" alt="Index Page" width="80%">
+  <h4>2. Registration Page</h4>
+  <img src="register.png" alt="User Registration Page" width="80%">
+   <h4>3. Admin Login Page</h4>
+  <img src="login.png" alt="User Login Page" width="80%">
+   <h4>3. Admin Dashboard Page</h4>
+  <img src="admindashboard.png" alt="User Login Page" width="80%">
