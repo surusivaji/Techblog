@@ -254,6 +254,5 @@ mvn spring-boot:run
   <img src="https://img.shields.io/badge/📚-Enjoy_Learning-lightgrey" alt="Enjoy Learning"/>
   <img src="https://img.shields.io/badge/🤝-Stay_Connected-blueviolet" alt="Stay Connected"/>
 </p>
-
-Thank you for using my application.  
+ 
 Enjoy learning awesome technologies like this, and keep building great things! 🚀
