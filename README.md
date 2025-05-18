@@ -243,4 +243,17 @@ mvn spring-boot:run
   <img src="searchpost.png" alt="Search Post" width="80%">
   <h4>36. User Logout Page</h4>
   <img src="userlogout.png" alt="User Logout" width="80%">
-  <hr>
+---
+
+---
+
+## 🎉 **Thank You for Using My Application!** 🎉
+
+<p align="center">
+  <img src="https://img.shields.io/badge/💚-Keep_Coding-success" alt="Keep Coding"/>
+  <img src="https://img.shields.io/badge/📚-Enjoy_Learning-lightgrey" alt="Enjoy Learning"/>
+  <img src="https://img.shields.io/badge/🤝-Stay_Connected-blueviolet" alt="Stay Connected"/>
+</p>
+
+Thank you for using my application.  
+Enjoy learning awesome technologies like this, and keep building great things! 🚀
