@@ -135,18 +135,18 @@ The **Tech Blog Application** is a comprehensive web-based blogging platform des
 
 #### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/your-username/shopping-application.git
-cd shopping-application
+git clone https://github.com/your-username/techblog.git
+cd techblog
 ```
 
 #### 2️⃣ Configure Database (MySQL)
 - Create a database in MySQL:
   ```sql
-  CREATE DATABASE shopping_app;
+  CREATE DATABASE techblog;
   ```
 - Update `application.properties` with MySQL credentials:
   ```properties
-  spring.datasource.url=jdbc:mysql://localhost:3306/shopping_app
+  spring.datasource.url=jdbc:mysql://localhost:3306/techblog
   spring.datasource.username=root
   spring.datasource.password=yourpassword
   spring.jpa.hibernate.ddl-auto=update
