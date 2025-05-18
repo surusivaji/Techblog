@@ -169,13 +169,77 @@ mvn spring-boot:run
 ---
 
   ## 🖼️ Screenshots
-<p>Below are sample screenshots showcasing the Shopping Application:</p>
+<p>Below are sample screenshots showcasing the Tech blog Application:</p>
 <div>
   <h4>1. Index Page</h4>
   <img src="index.png" alt="Index Page" width="80%">
-  <h4>2. Registration Page</h4>
-  <img src="register.png" alt="User Registration Page" width="80%">
-   <h4>3. Admin Login Page</h4>
-  <img src="login.png" alt="User Login Page" width="80%">
+   <h4>2. Admin Login Page</h4>
+  <img src="adminlogin.png" alt="Admin Login Page" width="80%">
    <h4>3. Admin Dashboard Page</h4>
   <img src="admindashboard.png" alt="User Login Page" width="80%">
+   <h4>4. Admin Profile Page</h4>
+  <img src="viewadmin.png" alt="Admin Profile Page" width="80%">
+  <h4>5. Edit Admin Profile Page</h4>
+  <img src="editadminprofile.png" alt="Edit Admin Profile Page" width="80%">
+  <h4>6. Delete Admin Account Page</h4>
+  <img src="deleteadminaccount.png" alt="Delete Admin Account Page" width="80%">
+   <h4>7. Add Blog Page</h4>
+  <img src="addblog.png" alt="Add Blog Page" width="80%">
+   <h4>8. Categories Page</h4>
+  <img src="showcategories.png" alt="Category Page" width="80%">
+   <h4>9. Edit Category Page</h4>
+  <img src="editcategory.png" alt="Edit Category Page" width="80%">
+   <h4>10. Delete Category Page</h4>
+  <img src="deletecategory.png" alt="Delete Category Page" width="80%">
+  <h4>11. View Blogs Page</h4>
+  <img src="viewblogs.png" alt="View Blogs Page" width="80%">
+  <h4>12. Edit Blog Page </h4>
+  <img src="editblog.png" alt="Edit Blog Page" width="80%">
+  <h4>13. Delete Blog Page</h4>
+  <img src="deleteblog.png" alt="Delete Blog Page" width="80%">
+  <h4>14. Users Information Page</h4>
+  <img src="viewusers.png" alt="View Users" width="80%">
+  <h4>15. Edit User Page</h4>
+  <img src="edituserinformation.png" alt="Edit User Information" width="80%">
+  <h4>16. Delete User Page</h4>
+  <img src="deleteuserinformation.png" alt="Delete User Information" width="80%">
+  <h4>17. Add Admin Page</h4>
+  <img src="addadmin.png" alt="Add Admin Page" width="80%">
+  <h4>18. View Admins Page</h4>
+  <img src="viewadmin.png" alt="View Admin Page" width="80%">
+  <h4>19. Edit Admin Information Page</h4>
+  <img src="editadmininformation.png" alt="Edit Admin Information" width="80%">
+  <h4>20. Delete Admin Information Page</h4>
+  <img src="deleteadmin.png" alt="Delete Admin Page" width="80%">
+  <h4>21. Comments Page</h4>
+  <img src="comments.png" alt="Comments Page" width="80%">
+  <h4>22. Delete Comment Page</h4>
+  <img src="deletecomment.png" alt="delete comment page" width="80%">
+  <h4>23. Likes Page</h4>
+  <img src="likes.png" alt="Likes Page" width="80%">
+  <h4>24. Delete Like Page</h4>
+  <img src="deletelike.png" alt="Delete Like Page" width="80%">
+  <h4>25. Admin Posts Page</h4>
+  <img src="yourposts.png" alt="your post page" width="80%">
+  <h4>26. Admin Logout Page</h4>
+  <img src="adminlogout.png" alt="Admin Logout Page" width="80%">
+  <h4>27. User Registration Page</h4>
+  <img src="register.png" alt="Registration Page" width="80%">
+  <h4>28. User Login Page</h4>
+  <img src="login.png" alt="Login Page" width="80%">
+  <h4>29. User Home Page</h4>
+  <img src="userhome.png" alt="User Home Page" width="80%">
+  <h4>30. User Profile Page</h4>
+  <img src="userprofile.png" alt="User Profile" width="80%">
+  <h4>31. Edit User Profile</h4>
+  <img src="editprofile.png" alt="Edit Profile Page" width="80%">
+  <h4>32. Posts Page</h4>
+  <img src="allposts.png" alt="View Posts Page" width="80%">
+  <h4>33. Read Post Page</h4>
+  <img src="viewpost.png" alt="view post page" width="80%">
+  <h4>34. Leave Comment And Like</h4>
+  <img src="comments.png" alt="Comment And Like" width="80%">
+  <h4>35. Search Post Page</h4>
+  <img src="searchpost.png" alt="Search Post" width="80%">
+  <h4>36. User Logout Page</h4>
+  <img src="userlogout.png" alt="User Logout" width="80%">
