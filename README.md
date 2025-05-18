@@ -212,7 +212,7 @@ mvn spring-boot:run
   <h4>20. Delete Admin Information Page</h4>
   <img src="deleteadmin.png" alt="Delete Admin Page" width="80%">
   <h4>21. Comments Page</h4>
-  <img src="comments.png" alt="Comments Page" width="80%">
+  <img src="admincomments.png" alt="Comments Page" width="80%">
   <h4>22. Delete Comment Page</h4>
   <img src="deletecomment.png" alt="delete comment page" width="80%">
   <h4>23. Likes Page</h4>
@@ -243,3 +243,4 @@ mvn spring-boot:run
   <img src="searchpost.png" alt="Search Post" width="80%">
   <h4>36. User Logout Page</h4>
   <img src="userlogout.png" alt="User Logout" width="80%">
+  <hr>
