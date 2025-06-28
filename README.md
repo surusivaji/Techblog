@@ -1,10 +1,10 @@
 <h1 align="center">📝 Tech Blog Application</h1>
 
-<p align="center">
-  A feature-rich, role-based blogging platform built with <strong>Spring MVC</strong>, <strong>Spring Boot</strong>, <strong>Spring Data JPA</strong>, <strong>MySQL</strong>, <strong>HTML</strong>, <strong>CSS</strong>, and <strong>Bootstrap</strong>.
+<p>
+A feature-rich, role-based blogging platform built with <strong>Spring MVC</strong>, <strong>Spring Boot</strong>, <strong>Spring Data JPA</strong>, <strong>MySQL</strong>, <strong>HTML</strong>, <strong>CSS</strong>, and <strong>Bootstrap</strong>.
 </p>
 
-<p align="center">
+<p>
   <img src="https://img.shields.io/badge/Spring%20MVC-5.3-green" alt="Spring MVC"/>
   <img src="https://img.shields.io/badge/Spring%20Boot-3.0-blueviolet" alt="Spring Boot"/>
   <img src="https://img.shields.io/badge/MySQL-8.0-blue" alt="MySQL"/>
